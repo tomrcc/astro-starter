@@ -1,6 +1,6 @@
 ---
 date: '2022-04-14'
-title: "7 things you didn't know about email"
+title: 7 things you didnt know about email
 tags:
   - marketing
   - blog
