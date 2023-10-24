@@ -1,10 +1,9 @@
 ---
-import "../styles/main.scss";
-import site from "../../data/site.json";
-import Header from "../components/header";
-import Footer from "../components/footer";
-import { SEO } from "astro-seo";
-
+import '../styles/main.scss';
+import site from '../../data/site.json';
+import Header from '../components/header';
+import Footer from '../components/footer';
+import { SEO } from 'astro-seo';
 
 export interface SEOProps {
   page_description: string | null;
@@ -17,9 +16,8 @@ export interface SEOProps {
 }
 
 export interface Props {
-	title: string;
-	page_size: number;
-	seo?: SEOProps;
+  title: string;
+  seo?: SEOProps;
 }
 
 const { seo } = Astro.props;
@@ -35,15 +33,15 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link href="/vendor/phosphor-icons/css/phosphor.css" rel="stylesheet" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link href="/vendor/phosphor-icons/css/phosphor.css" rel="stylesheet" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
 
-		<SEO
+    <SEO
       noindex={seo?.no_index || false}
       title={title}
       description={description}
@@ -52,7 +50,7 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
         basic: {
           title: Astro.props.title,
           url: baseUrl?.toString(),
-          type: `${seo?.open_graph_type || "website"}`,
+          type: `${seo?.open_graph_type || 'website'}`,
           image: image,
         },
         optional: {
@@ -66,17 +64,15 @@ const canonicalURL = new URL(seo?.canonical_url ?? Astro.url.pathname, baseUrl);
       twitter={{
         creator: `${seo?.author_twitter_handle || site.twitter_site}`,
         site: `${site.twitter_site}`,
-        card: "summary_large_image",
+        card: 'summary_large_image',
       }}
     />
-	</head>
-	<body>
-
-		<Header />
-		<main class="container mx-auto px-3">
-			<slot />
-		</main>	
-		<Footer />
-
-	</body>
+  </head>
+  <body>
+    <Header />
+    <main class="container mx-auto px-3">
+      <slot />
+    </main>
+    <Footer />
+  </body>
 </html>

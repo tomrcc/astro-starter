@@ -1,29 +1,22 @@
 ---
-import BlogList from "../components/blog/list";
-import BlogPagination from "../components/blog/pagination";
-import Layout, { type SEOProps } from "../layouts/Layout.astro";
-import { getCollection, getEntry } from 'astro:content';
+import PageHelper from '../shared/astro/page.jsx';
+import Layout, { type SEOProps } from './Layout.astro';
 
 type Props = {
   frontmatter: {
     title: string;
-    page_size: number;
+    content_blocks?: Array<Record<string, any>>;
+    page_size?: number;
     seo?: SEOProps;
   };
 };
 
-const { frontmatter } = Astro.props
-const { slug } = Astro.params
-let pageSlug = slug;
-if (pageSlug === undefined) {
-  pageSlug = "index"
-};
-const page = await getEntry("pages", pageSlug);
-let posts = await getCollection('blog');
-posts = posts.slice(0, frontmatter.page_size);
+if (!Astro.props.frontmatter) {
+  throw new Error('Page frontmatter must be defined');
+}
+const props = Astro.props.frontmatter;
 ---
 
-<Layout {...frontmatter}>
-  <slot />
-  <BlogList posts={posts} page={page}/>
+<Layout {...props}>
+  <PageHelper bookshop:live contentBlocks={props.content_blocks} />
 </Layout>

@@ -1,4 +1,4 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, z } from 'astro:content';
 
 const seoSchema = z
   .object({
@@ -27,20 +27,20 @@ const blogCollection = defineCollection({
 });
 
 const pageSchema = z.object({
-  _schema: z.any().optional(),
-  hidden: z.boolean().optional().default(false),
+  _schema: z.string().optional(),
   title: z.string(),
-  description: z.string(),
-  page_size: z.number().nonnegative(),
+  content_blocks: z.array(z.any()),
+  page_size: z.undefined(),
+  description: z.string().optional(),
   seo: seoSchema,
 });
 
 const paginatedCollectionSchema = z.object({
-  _schema: z.literal("paginated_collection"),
-  hidden: z.literal(true).optional().default(true),
+  _schema: z.literal('paginated_collection'),
   title: z.string(),
   description: z.string().optional(),
-  page_size: z.number().nonnegative(),
+  page_size: z.number().positive(),
+  content_blocks: z.undefined(),
   seo: seoSchema,
 });
 
