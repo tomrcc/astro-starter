@@ -2,10 +2,10 @@
 spec:
   structures:
     - content_blocks
-  label: Hero
-  description: Hero section
-  icon: 'cottage'
-  tags: ['hero', 'block']
+  label: Left Right
+  description: Left Right block
+  icon: 'list'
+  tags: ['left-right', 'block']
 
 # Defines the structure of this component, as well as the default values
 blueprint:
