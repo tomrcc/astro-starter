@@ -50,3 +50,7 @@ content_blocks:
       button_text_color: '#fff'
       button_color: '#c7588e'
 ---
+
+# A heading
+
+Some text in.a paragraph
